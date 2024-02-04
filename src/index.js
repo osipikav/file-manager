@@ -2,7 +2,6 @@ import os from "node:os";
 import process from "node:process";
 import readline from "node:readline";
 import path from "node:path";
-// import fs from "node:fs";
 import { cd } from "./components/nwd/cd.js";
 import { ls } from "./components/nwd/ls.js";
 import { up } from "./components/nwd/up.js";
@@ -10,6 +9,9 @@ import { osPart } from "./components/os/os.js";
 import { hash } from "./components/hash/hash.js";
 import { compress } from "./components/compress/compress.js";
 import { decompress } from "./components/compress/decompress.js";
+import { cat } from "./components/basic/cat.js";
+import { add } from "./components/basic/add.js";
+import { rn } from "./components/basic/rn.js";
 
 const args = process.argv.slice(2);
 const argsUsername = args[args.length - 1];
@@ -52,31 +54,33 @@ rl.on("line", async (input) => {
     case "cd":
       await cd(path.join(...commandArgs));
       break;
-
     case "ls":
       await ls();
       break;
-
+    case "cat":
+      await cat(commandArgs);
+      break;
+    case "add":
+      await add(commandArgs);
+      break;
+    case "rn":
+      await rn(commandArgs);
+      break;
     case "up":
       await up();
       break;
-
     case "os":
       await osPart(commandArgs);
       break;
-
     case "hash":
       await hash(commandArgs);
       break;
-
     case "compress":
       await compress(commandArgs);
       break;
-
     case "decompress":
       await decompress(commandArgs);
       break;
-
     default:
       console.log(`Invalid input`);
   }

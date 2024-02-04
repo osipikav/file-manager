@@ -10,6 +10,6 @@ export async function hash(commandArg) {
     const result = hash.digest("hex");
     console.log(result);
   } catch (error) {
-    console.log("Operation failed:");
+    console.log("Operation failed");
   }
 }
