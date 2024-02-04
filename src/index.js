@@ -3,13 +3,14 @@ import process from "node:process";
 import readline from "node:readline";
 import path from "node:path";
 // import fs from "node:fs";
-import { cd } from "./components/cd/cd.js";
+import { cd } from "./components/nwd/cd.js";
+import { ls } from "./components/nwd/ls.js";
+import { up } from "./components/nwd/up.js";
+import { osPart } from "./components/os/os.js";
 
 const args = process.argv.slice(2);
 const argsUsername = args[args.length - 1];
 export const userHomeDirectory = os.homedir();
-
-let currentPath = userHomeDirectory;
 
 const username = argsUsername.startsWith("--username=")
   ? argsUsername.substring(11).trim()
@@ -46,11 +47,19 @@ rl.on("line", async (input) => {
 
   switch (command) {
     case "cd":
-      await cd(currentPath, path.join(...commandArgs));
+      await cd(path.join(...commandArgs));
+      break;
+
+    case "ls":
+      await ls();
+      break;
+
+    case "up":
+      await up();
       break;
 
     case "os":
-      console.log(command);
+      await osPart(commandArgs);
       break;
 
     default:
