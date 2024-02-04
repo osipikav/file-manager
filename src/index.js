@@ -7,6 +7,9 @@ import { cd } from "./components/nwd/cd.js";
 import { ls } from "./components/nwd/ls.js";
 import { up } from "./components/nwd/up.js";
 import { osPart } from "./components/os/os.js";
+import { hash } from "./components/hash/hash.js";
+import { compress } from "./components/compress/compress.js";
+import { decompress } from "./components/compress/decompress.js";
 
 const args = process.argv.slice(2);
 const argsUsername = args[args.length - 1];
@@ -60,6 +63,18 @@ rl.on("line", async (input) => {
 
     case "os":
       await osPart(commandArgs);
+      break;
+
+    case "hash":
+      await hash(commandArgs);
+      break;
+
+    case "compress":
+      await compress(commandArgs);
+      break;
+
+    case "decompress":
+      await decompress(commandArgs);
       break;
 
     default:
