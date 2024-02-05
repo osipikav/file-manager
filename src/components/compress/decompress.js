@@ -1,5 +1,5 @@
 import path from "node:path";
-import { createGunzip } from "zlib";
+import { createBrotliDecompress } from "zlib";
 import fs from "node:fs";
 
 export async function decompress(commandArgs) {
@@ -8,8 +8,9 @@ export async function decompress(commandArgs) {
     const archiveFilePath = path.resolve(process.cwd(), commandArgs[0]);
     const readStream = fs.createReadStream(archiveFilePath);
     const writeStream = fs.createWriteStream(compressFilePath);
-    const gunzipStream = createGunzip();
-    readStream.pipe(gunzipStream).pipe(writeStream);
+    const brotliStream = createBrotliDecompress();
+    readStream.pipe(brotliStream).pipe(writeStream);
+    console.log("Operation successful");
   } catch (error) {
     console.log("Operation failed");
   }
