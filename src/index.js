@@ -14,6 +14,7 @@ import { add } from "./components/basic/add.js";
 import { rn } from "./components/basic/rn.js";
 import { cp } from "./components/basic/cp.js";
 import { rm } from "./components/basic/rm.js";
+import { mv } from "./components/basic/mv.js";
 
 const args = process.argv.slice(2);
 const argsUsername = args[args.length - 1];
@@ -73,6 +74,9 @@ rl.on("line", async (input) => {
       break;
     case "rm":
       await rm(commandArgs);
+      break;
+    case "mv":
+      await mv(commandArgs);
       break;
     case "up":
       await up();
