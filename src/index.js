@@ -7,8 +7,8 @@ import { ls } from "./components/nwd/ls.js";
 import { up } from "./components/nwd/up.js";
 import { osPart } from "./components/os/os.js";
 import { hash } from "./components/hash/hash.js";
-import { compress } from "./components/compress/compress.js";
-import { decompress } from "./components/compress/decompress.js";
+import { compress } from "./components/zip/compress.js";
+import { decompress } from "./components/zip/decompress.js";
 import { cat } from "./components/basic/cat.js";
 import { add } from "./components/basic/add.js";
 import { rn } from "./components/basic/rn.js";
@@ -92,6 +92,12 @@ rl.on("line", async (input) => {
       break;
     case "decompress":
       await decompress(commandArgs);
+      break;
+    case ".exit":
+      {
+        showGoodbyeMessage(username);
+        process.exit();
+      }
       break;
     default:
       console.log(`Invalid input`);
