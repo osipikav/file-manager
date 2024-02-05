@@ -12,6 +12,8 @@ import { decompress } from "./components/compress/decompress.js";
 import { cat } from "./components/basic/cat.js";
 import { add } from "./components/basic/add.js";
 import { rn } from "./components/basic/rn.js";
+import { cp } from "./components/basic/cp.js";
+import { rm } from "./components/basic/rm.js";
 
 const args = process.argv.slice(2);
 const argsUsername = args[args.length - 1];
@@ -65,6 +67,12 @@ rl.on("line", async (input) => {
       break;
     case "rn":
       await rn(commandArgs);
+      break;
+    case "cp":
+      await cp(commandArgs);
+      break;
+    case "rm":
+      await rm(commandArgs);
       break;
     case "up":
       await up();
